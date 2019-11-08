@@ -31,4 +31,10 @@ if(BUILD_TESTING)
 
     add_test(NAME computeCostTest COMMAND test_computeCost)
 
+    add_executable(test_computeCostMulti computeCostMulti_main.cpp)
+    add_dependencies(test_computeCostMulti computeCost)
+    target_link_libraries(test_computeCostMulti ${ARMADILLO_LIBRARIES} ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/computeCost.dir/computeCost.cpp.o)
+
+    add_test(NAME computeCostMultiTest COMMAND test_computeCostMulti)
+
 endif()
