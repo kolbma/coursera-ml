@@ -22,4 +22,13 @@ if(BUILD_TESTING)
 
     add_test(NAME plotDataTest COMMAND test_plotData)
 
+    add_executable(test_util util_test.cpp)
+    target_link_libraries(test_util ${ARMADILLO_LIBRARIES})
+
+    add_executable(test_computeCost computeCost_main.cpp)
+    add_dependencies(test_computeCost computeCost)
+    target_link_libraries(test_computeCost ${ARMADILLO_LIBRARIES} ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/computeCost.dir/computeCost.cpp.o)
+
+    add_test(NAME computeCostTest COMMAND test_computeCost)
+
 endif()
