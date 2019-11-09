@@ -3,8 +3,37 @@
 #define COURSERA_UTIL_HPP
 
 #include <cassert>
+#include <cmath>
 #include <string>
 #include <vector>
+
+template <typename T>
+bool compare_mat(const T &mat_a, const T &mat_b, uint8_t decimal_accuracy)
+{
+    using namespace std;
+    using namespace arma;
+
+    static_assert(is_base_of<mat, T>::value || is_base_of<fmat, T>::value, "T must extend Armadillo Mat<double> || Mat<float>");
+
+    if (mat_a.n_cols != mat_b.n_cols || mat_a.n_rows != mat_b.n_rows)
+    {
+        throw invalid_argument("sizes of Mats differ");
+    }
+
+    for (size_t r = 0; r < mat_a.n_rows; r++)
+    {
+        for (size_t c = 0; c < mat_a.n_cols; c++)
+        {
+            const double a = floor(mat_a(r, c) * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
+            const double b = floor(mat_b(r, c) * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
+            if (a != b)
+            {
+                return false;
+            }
+        }
+    }
+    return true;
+}
 
 template <typename T>
 void parse_mat(T *targetmat, const std::string source)
@@ -16,7 +45,7 @@ void parse_mat(T *targetmat, const std::string source)
 
     if (!(source.front() == '[' && source.back() == ']'))
     {
-        throw new invalid_argument("can not parse Mat");
+        throw invalid_argument("can not parse Mat");
     }
 
     size_t cols = 0, rows = 0;
