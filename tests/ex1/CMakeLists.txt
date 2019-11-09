@@ -1,5 +1,7 @@
 
 if(BUILD_TESTING)
+    include_directories(${CMAKE_SOURCE_DIR}/ex1)
+
     add_definitions(-DCMAKE_TESTING_ENABLED)
 
     find_package(Armadillo REQUIRED)
@@ -36,5 +38,12 @@ if(BUILD_TESTING)
     target_link_libraries(test_computeCostMulti ${ARMADILLO_LIBRARIES} ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/computeCost.dir/computeCost.cpp.o)
 
     add_test(NAME computeCostMultiTest COMMAND test_computeCostMulti)
+
+    add_executable(test_featureNormalize featureNormalize_main.cpp) 
+    add_dependencies(test_featureNormalize featureNormalize) 
+    target_link_libraries(test_featureNormalize ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/featureNormalize.dir/featureNormalize.cpp.o) 
+    # target_link_libraries(test_featureNormalize ${ARMADILLO_LIBRARIES} ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/featureNormalize.dir/featureNormalize.cpp.o) 
+ 
+    add_test(NAME featureNormalizeTest COMMAND test_featureNormalize)
 
 endif()

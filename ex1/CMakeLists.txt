@@ -1,3 +1,5 @@
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}")
+
 find_package(Armadillo REQUIRED)
 include_directories(${ARMADILLO_INCLUDE_DIRS})
 
@@ -15,3 +17,6 @@ target_link_libraries(plotData ${PLPLOT_LIBRARIES})
 
 add_executable(computeCost computeCost.cpp computeCost_main.cpp)
 target_link_libraries(computeCost ${ARMADILLO_LIBRARIES})
+
+add_executable(featureNormalize featureNormalize.cpp featureNormalize_main.cpp)
+# target_link_libraries(featureNormalize ${ARMADILLO_LIBRARIES})
