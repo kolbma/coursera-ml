@@ -94,7 +94,7 @@ void parse_mat(T *targetmat, const std::string source)
         {
             cols = c;
         }
-        else
+        else if (c != cols)
         {
             string msg = "can not parse Mat at row " + to_string(rows);
             throw invalid_argument(msg.c_str());
