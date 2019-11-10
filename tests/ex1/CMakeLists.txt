@@ -53,4 +53,11 @@ if(BUILD_TESTING)
  
     add_test(NAME gradientDescentTest COMMAND test_gradientDescent)
 
+    add_executable(test_normalEqn normalEqn_main.cpp) 
+    add_dependencies(test_normalEqn normalEqn) 
+    # target_link_libraries(test_normalEqn ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/normalEqn.dir/normalEqn.cpp.o) 
+    target_link_libraries(test_normalEqn ${ARMADILLO_LIBRARIES} ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/normalEqn.dir/normalEqn.cpp.o) 
+ 
+    add_test(NAME normalEqnTest COMMAND test_normalEqn)
+
 endif()
