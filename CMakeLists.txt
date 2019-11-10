@@ -4,6 +4,8 @@ project(coursera-ml VERSION 0.1.0)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 
+add_compile_options(-Wall)
+
 include(CTest)
 enable_testing()
 
