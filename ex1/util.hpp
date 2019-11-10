@@ -8,7 +8,16 @@
 #include <vector>
 
 template <typename T>
-bool compare_mat(const T &mat_a, const T &mat_b, uint8_t decimal_accuracy)
+bool is_almost_equal(const T a, const T b, const uint8_t decimal_accuracy)
+{
+    const T ac = std::round(a * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
+    const T bc = std::round(b * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
+
+    return ac == bc;
+}
+
+template <typename T>
+bool compare_mat(const T &mat_a, const T &mat_b, const uint8_t decimal_accuracy)
 {
     using namespace std;
     using namespace arma;
@@ -24,8 +33,8 @@ bool compare_mat(const T &mat_a, const T &mat_b, uint8_t decimal_accuracy)
     {
         for (size_t c = 0; c < mat_a.n_cols; c++)
         {
-            const double a = floor(mat_a(r, c) * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
-            const double b = floor(mat_b(r, c) * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
+            const double a = round(mat_a(r, c) * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
+            const double b = round(mat_b(r, c) * (10 ^ decimal_accuracy)) / (10 ^ decimal_accuracy);
             if (a != b)
             {
                 return false;
