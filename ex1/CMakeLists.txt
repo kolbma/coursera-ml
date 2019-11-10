@@ -19,4 +19,8 @@ add_executable(computeCost computeCost.cpp computeCost_main.cpp)
 target_link_libraries(computeCost ${ARMADILLO_LIBRARIES})
 
 add_executable(featureNormalize featureNormalize.cpp featureNormalize_main.cpp)
-# target_link_libraries(featureNormalize ${ARMADILLO_LIBRARIES})
+target_link_libraries(featureNormalize ${ARMADILLO_LIBRARIES})
+
+add_executable(gradientDescent gradientDescent.cpp gradientDescent_main.cpp)
+add_dependencies(gradientDescent computeCost)
+target_link_libraries(gradientDescent ${ARMADILLO_LIBRARIES} ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/computeCost.dir/computeCost.cpp.o)
