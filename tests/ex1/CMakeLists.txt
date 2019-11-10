@@ -53,6 +53,13 @@ if(BUILD_TESTING)
  
     add_test(NAME gradientDescentTest COMMAND test_gradientDescent)
 
+    add_executable(test_gradientDescentMulti gradientDescentMulti_main.cpp) 
+    add_dependencies(test_gradientDescentMulti gradientDescent) 
+    #target_link_libraries(test_gradientDescent ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/gradientDescent.dir/gradientDescent.cpp.o) 
+    target_link_libraries(test_gradientDescentMulti ${ARMADILLO_LIBRARIES} ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/gradientDescent.dir/gradientDescent.cpp.o ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/computeCost.dir/computeCost.cpp.o) 
+ 
+    add_test(NAME gradientDescentMultiTest COMMAND test_gradientDescentMulti)
+
     add_executable(test_normalEqn normalEqn_main.cpp) 
     add_dependencies(test_normalEqn normalEqn) 
     # target_link_libraries(test_normalEqn ${CMAKE_BINARY_DIR}/ex1/CMakeFiles/normalEqn.dir/normalEqn.cpp.o) 
