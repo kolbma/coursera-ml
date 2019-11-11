@@ -6,6 +6,7 @@
 #include <cmath>
 #include <string>
 #include <vector>
+#include <armadillo>
 
 template <typename T>
 bool is_almost_equal(const T a, const T b, const uint8_t decimal_accuracy)
